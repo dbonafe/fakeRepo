@@ -1,4 +1,4 @@
 # fakeRepo
 Fake repo just to validate jenkins integration.
 
-God save Ukraine.
+God save the world.
