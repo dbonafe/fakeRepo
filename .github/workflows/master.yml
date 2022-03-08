@@ -1,15 +1,27 @@
 name: Deploy
 on:
-  workflow_dispatch:
   push:
     branches:
       - master
 jobs:
   build:
-    name: Run API
+    name: Run Web App and Call Automation
     runs-on: ubuntu-latest
     steps:
-      - name: Build API
+      - name: Build Futurestay App
         run: |
-          echo "Build API"
+          echo "Build Web App"
+          sleep 10s
+      - uses: convictional/trigger-workflow-and-wait@v1.3.0
+        with:
+          owner: dbonafe
+          repo: cypress-fta
+          github_token: ${{ secrets.G_ACCESS_TOKEN }}
+          workflow_file_name: actions.yml
+          ref: master
+      - name: Throwing Test Automation
+        run: |
+          echo "Test automation has been launch"
+          echo "Go to the following link to see the execution:"
+          echo "https://github.com/dbonafe/cypress-fta/actions"
           sleep 10s
